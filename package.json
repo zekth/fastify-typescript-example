@@ -1,11 +1,10 @@
 {
   "name": "fastify-ts-example",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Example repository for Fastify project using TypeScript and Docker",
   "scripts": {
-    "test": "",
-    "dev": "npm run build && npm run serve",
+    "test": "npm run lint",
+    "start": "npm run build && npm run serve",
     "dev:inspect": "npm run build && npm run inspect",
     "build": "tsc --incremental --sourceMap && npm run copy:assets",
     "build:ci": "tsc && npm run copy:assets",
@@ -16,10 +15,10 @@
     "copy:assets": "mkdir -p dist/assets && cp -R src/assets/ dist/assets/",
     "serve": "node -r source-map-support/register -r dotenv/config dist/app.js",
     "inspect": "node --inspect -r source-map-support/register -r dotenv/config dist/app.js",
-    "watch:serve": "npm run clean && nodemon -e ts -w ./src --exec \"npm run dev\"",
+    "watch:serve": "npm run clean && nodemon -e ts -w ./src --exec \"npm run start\"",
     "watch:inspect": "npm run clean && nodemon -e ts -w ./src --exec \"npm run dev:inspect\""
   },
-  "author": "",
+  "author": "Vincent Le Goff - @zekth",
   "license": "MIT",
   "dependencies": {
     "fastify": "3.20.2"
