@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "noLib": false,
+    "target": "es2018",
+    "sourceMap": false,
+    "baseUrl": "src",
+    "outDir": "dist",
+    "newLine": "lf",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "lib": ["ES2018"],
+    "typeRoots": ["./src/typings", "./node_modules/@types"],
+  },
+  "include": ["./src"],
+  "exclude": ["node_modules"]
+}

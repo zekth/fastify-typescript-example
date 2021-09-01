@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - name: Get Node Version
+        id: node
+        run: |
+          NODE_VERSION=$(cat .nvmrc)
+          echo "::set-output name=version::$NODE_VERSION"
+      - name: Use Node.js
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: ${{ steps.node.outputs.version }}
+      - name: install deps
+        run: npm ci
+      - name: test
+        run: npm test
+      - name: build container
+        run: |
+          docker build -t my-new-image \
+            --build-arg NODE_VERSION=${{ steps.node.outputs.version }} \
+            --build-arg GIT_COMMIT=${{ github.sha }} \
+            .
+      - name: inspect container
+        run: |
+          docker inspect my-new-image

@@ -1,0 +1,41 @@
+{
+  "name": "fastify-ts-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "dev": "npm run build && npm run serve",
+    "dev:inspect": "npm run build && npm run inspect",
+    "build": "tsc --incremental --sourceMap && npm run copy:assets",
+    "build:ci": "tsc && npm run copy:assets",
+    "lint": "eslint ./src --ext .ts --quiet",
+    "lint:fix": "eslint ./src --ext .ts --quiet --fix",
+    "clean": "rimraf dist",
+    "build:clean": "npm run clean && npm run",
+    "copy:assets": "mkdir -p dist/assets && cp -R src/assets/ dist/assets/",
+    "serve": "node -r source-map-support/register -r dotenv/config dist/app.js",
+    "inspect": "node --inspect -r source-map-support/register -r dotenv/config dist/app.js",
+    "watch:serve": "npm run clean && nodemon -e ts -w ./src --exec \"npm run dev\"",
+    "watch:inspect": "npm run clean && nodemon -e ts -w ./src --exec \"npm run dev:inspect\""
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "fastify": "3.20.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.10",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
+    "source-map-support": "^0.5.19",
+    "typescript": "^4.4.2"
+  }
+}
